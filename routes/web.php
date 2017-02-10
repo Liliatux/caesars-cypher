@@ -18,3 +18,5 @@ Route::get('/add', function () {
 });
 
 Route::post('/addMessage', 'CaesarController@postMessage');
+
+Route::delete('/delete/{id}', 'CaesarController@deleteMessage');

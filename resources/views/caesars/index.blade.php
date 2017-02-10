@@ -10,8 +10,13 @@
         	<h1>Messages</h1>
 			@foreach($caesars as $caesar)
 			<div class="ui message">
-				<div class="header">{{$caesar->title}}</div>
-				<p>{{$caesar->message}}</p>
+				<div class="content">
+					<div class="header">{{$caesar->title}}</div>
+					<p>{{$caesar->message}}</p>
+				</div>
+				<br>
+				<a href="/decrypt/{{$caesar->id}}"><button class="ui small green button"><i class="edit icon"></i></button></a>
+				<form action="/delete/{{$caesar->id}}" method="post">{{csrf_field() }} {{method_field('DELETE') }} <button type="submit" class="ui small red button"><i class="delete icon"></i></button></form>
 			</div>
 			@endforeach
 		</div>

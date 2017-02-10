@@ -13,13 +13,34 @@ class CaesarController extends Controller
     }
 
     public function postMessage(Request $request) {
+    	$message = $request->message;
+    	$decalage = $request->decalage;
+
     	$caesar = new Caesar;
     	$caesar->title = $request->title;
-    	$caesar->message = $request->message;
+    	$caesar->message = $this->cypher($message, $decalage);
     	$caesar->decalage = $request->decalage;
 
     	$caesar->save();
 
     	return redirect('/');
+    }
+
+    public function cypher($message, $decalage) {
+    	$messageCypher = '';
+    	for($i = 0; $i < strlen($message); $i++) {
+    		$letter = substr($message, $i, 1);
+    		$ascii = ord($letter) + $decalage;
+    		$messageCypher .= chr($ascii);
+    	}
+
+    	return $messageCypher;
+    }
+
+    public function deleteMessage($id) {
+    	$caesar = Caesar::find($id);
+    	$caesar->delete();
+
+    	return back();
     }
 }
