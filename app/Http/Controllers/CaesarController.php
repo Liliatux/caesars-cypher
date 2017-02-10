@@ -12,7 +12,7 @@ class CaesarController extends Controller
     	return view ('caesars.index', ['caesars' => $caesars]);
     }
 
-    public function postMessage(Request $request) {
+    public function cryptMessage(Request $request) {
     	$message = $request->message;
     	$decalage = $request->decalage;
 
@@ -27,14 +27,14 @@ class CaesarController extends Controller
     }
 
     public function cypher($message, $decalage) {
-    	$messageCypher = '';
+    	$crypt = '';
     	for($i = 0; $i < strlen($message); $i++) {
     		$letter = substr($message, $i, 1);
     		$ascii = ord($letter) + $decalage;
-    		$messageCypher .= chr($ascii);
+    		$crypt .= chr($ascii);
     	}
 
-    	return $messageCypher;
+    	return $crypt;
     }
 
     public function deleteMessage($id) {
@@ -42,5 +42,27 @@ class CaesarController extends Controller
     	$caesar->delete();
 
     	return back();
+    }
+
+    public function getMessage($id) {
+    	$caesar = Caesar::find($id);
+
+    	return view('caesars.decrypt', ['caesar' => $caesar]);
+    }
+
+    public function decryptMessage(Request $request) {
+    	$caesar = Caesar::find($request->id);
+
+    	$message = $request->message;
+    	$decalage = $request->decalage;
+    	$decrypt = '';
+
+    	for($i = 0; $i < strlen($message); $i++) {
+    		$letter = substr($message, $i, 1);
+    		$ascii = ord($letter) - $decalage;
+    		$decrypt .= chr($ascii);
+    	}
+
+    	return view('caesars.test', ['decrypt' => $decrypt]);
     }
 }

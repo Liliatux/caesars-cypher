@@ -17,6 +17,10 @@ Route::get('/add', function () {
 	return view('caesars/add');
 });
 
-Route::post('/addMessage', 'CaesarController@postMessage');
+Route::post('/addMessage', 'CaesarController@cryptMessage');
 
 Route::delete('/delete/{id}', 'CaesarController@deleteMessage');
+
+Route::get('/decrypt/{id}', 'CaesarController@getMessage');
+
+Route::put('/decryptMessage', 'CaesarController@decryptMessage');

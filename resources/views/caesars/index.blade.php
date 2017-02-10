@@ -2,7 +2,7 @@
 
 @section('content')
 	<div class="ui menu">
-		<a href="/" class="active item">Acceuil</a>
+		<a href="/" class="active item">Accueil</a>
 		<a href="/add" class="item">Ajouter un message</a>
 	</div>
     <div class="ui centered three columns grid">
