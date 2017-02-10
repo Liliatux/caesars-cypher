@@ -12,3 +12,9 @@
 */
 
 Route::get('/', 'CaesarController@getIndex');
+
+Route::get('/add', function () {
+	return view('caesars/add');
+});
+
+Route::post('/addMessage', 'CaesarController@postMessage');

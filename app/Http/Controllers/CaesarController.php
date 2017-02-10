@@ -9,6 +9,17 @@ class CaesarController extends Controller
 {
     public function getIndex() {
     	$caesars = Caesar::all();
-    	return view ('index', ['caesars' => $caesars]);
+    	return view ('caesars.index', ['caesars' => $caesars]);
+    }
+
+    public function postMessage(Request $request) {
+    	$caesar = new Caesar;
+    	$caesar->title = $request->title;
+    	$caesar->message = $request->message;
+    	$caesar->decalage = $request->decalage;
+
+    	$caesar->save();
+
+    	return redirect('/');
     }
 }
