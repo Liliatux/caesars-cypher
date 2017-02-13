@@ -62,7 +62,5 @@ class CaesarController extends Controller
     		$ascii = ord($letter) - $decalage;
     		$decrypt .= chr($ascii);
     	}
-
-    	return view('caesars.test', ['decrypt' => $decrypt]);
     }
 }
