@@ -12,9 +12,18 @@
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-function test(event) {
-	event.preventDefault();
+var dechiffre = document.getElementById("dechiffre");
+dechiffre.addEventListener("submit", test, false);
+
+function test(e) {
+	e.preventDefault();
 	console.log("click");
+	$ajax({
+		url: '/decryptMessage',
+		type: 'POST',
+		dataType:'html',
+
+	});
 }
 
-console.log("test");
+console.log("allan");
