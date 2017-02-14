@@ -15,15 +15,26 @@
 var dechiffre = document.getElementById("dechiffre");
 dechiffre.addEventListener("submit", test, false);
 
+var id = document.getElementById('id').value;
+
 function test(e) {
 	e.preventDefault();
 	console.log("click");
-	$ajax({
-		url: '/decryptMessage',
-		type: 'POST',
-		dataType:'html',
+	$.ajaxSetup({
+		headers: {
+			'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
+		}
+	});
 
+	$.ajax({
+		url: '/decryptMessage/' + id,
+		type: 'GET',
+		dataType:'html',
+		success: function($response) {
+			document.getElementById('cypherMess').value = $response;
+		},
+		error: function() {
+			console.log('snif');
+		}
 	});
 }
-
-console.log("allan");

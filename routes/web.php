@@ -23,4 +23,4 @@ Route::delete('/delete/{id}', 'CaesarController@deleteMessage');
 
 Route::get('/decrypt/{id}', 'CaesarController@getMessage');
 
-Route::put('/decryptMessage', 'CaesarController@decryptMessage');
+Route::get('/decryptMessage/{id}', 'CaesarController@decryptMessage');

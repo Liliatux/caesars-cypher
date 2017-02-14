@@ -32,13 +32,13 @@ class CaesarController extends Controller
         return redirect('/');
     }
 
-    public function decryptMessage(Request $request) {
-        $caesar = Caesar::find($request->id);
+    public function decryptMessage($id) {
+        $caesar = Caesar::find($id);
 
-        $message = $request->message;
-        $decalage = -($request->decalage);
+        $message = $caesar->message;
+        $decalage = -($caesar->decalage);
         $cypherMess = $this->cypher($message, $decalage);
-        return back();
+        return response($cypherMess);
     }
 
     public function cypher($message, $decalage) {
